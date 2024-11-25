@@ -1,5 +1,7 @@
 # Graylog Archiver
 
+<a href="http://hits.dwyl.com/minhpq331/graylog-archiver"><img alt="hits" src="https://hits.dwyl.com/minhpq331/graylog-archiver.svg?style=flat-square"></a> 
+
 A command-line tool written in Go to automate the process of creating backups (snapshots) for OpenSearch indices (expecially for Graylog). The tool ensures no duplicate snapshots are created, supports analyzing index data for timestamp ranges, and allows filtering indices based on patterns and recency.
 
 ## Features
@@ -56,13 +58,17 @@ Run the CLI with the following arguments:
 
 To back up all indices matching `uat_*`, skipping the latest 3, and using the repository s3_backup_repo:
 
+```bash
 ./graylog-archiver --pattern "uat_*" --url http://localhost:9200 --bypass 3 --repo s3_backup_repo
+```
 
 To include timestamp analysis in the snapshot names:
 
+```bash
 ./graylog-archiver --pattern uat_* --url http://localhost:9200 --bypass 3 --repo s3_backup_repo --analyze
+```
 
-Snapshot Name Format
+**Snapshot Name Format**
 
 The snapshot name follows this pattern:
 - Without analysis: <index_name>
@@ -86,7 +92,9 @@ Setting Up as a Cron Job
 
 To run the tool automatically, add it to a cron job. For example:
 
+```
 0 2 * * * /path/to/graylog-archiver --pattern "uat_*" --url http://localhost:9200 --bypass 3 --repo s3_backup_repo --analyze >> /var/log/graylog-archiver.log 2>&1
+```
 
 This runs the tool daily at 2:00 AM and logs output to /var/log/graylog-archiver.log.
 
