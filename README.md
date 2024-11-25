@@ -65,7 +65,7 @@ To back up all indices matching `uat_*`, skipping the latest 3, and using the re
 To include timestamp analysis in the snapshot names:
 
 ```bash
-./graylog-archiver --pattern uat_* --url http://localhost:9200 --bypass 3 --repo s3_backup_repo --analyze
+./graylog-archiver --pattern "uat_*" --url http://localhost:9200 --bypass 3 --repo s3_backup_repo --analyze
 ```
 
 **Snapshot Name Format**
